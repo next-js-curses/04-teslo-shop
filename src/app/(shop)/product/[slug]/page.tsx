@@ -1,3 +1,4 @@
+import { QuantitySelector, SizeSelector } from "@/components";
 import { titleFont } from "@/config/fonts";
 import { initialData } from "@/seed/seed";
 import { notFound } from "next/navigation";
@@ -29,8 +30,13 @@ export default function Product({ params }: Readonly<Props>) {
         <p className="text-lg mb-5">${ product.price }</p>
 
         {/* Selector de tallas */}
+        <SizeSelector
+          availableSizes={ product.sizes }
+          selectedSize={ product.sizes[0] }
+        />
 
         {/* Selector de cantidad */}
+        <QuantitySelector quantity={ 0 } />
 
         {/* Botón */}
         <button className="btn-primary my-5">
