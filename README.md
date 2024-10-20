@@ -7,7 +7,8 @@ Ecommerce desarrolladon con next js
 2. Crear una copia del ```.env.template```, renombrarlo a ```.env``` y cambiar las variables del entorno
 3. Instalar dependencias ```pnpm install```
 4. Levantar la base de datos ```docker compose up -d```
-5. Correr el proyecto ```pnpm run dev```
+5. Correr las migraciones de prisma ```npx prima migrate dev```
+6. Correr el proyecto ```pnpm run dev```
 
 
 # Correr en prod
