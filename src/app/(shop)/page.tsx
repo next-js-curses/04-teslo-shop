@@ -1,9 +1,20 @@
+import { getPaginatedProductWithImages } from '@/actions';
 import { ProductGrid, Title } from '@/components'
-import { initialData } from '@/seed/seed';
 
-const products = initialData.products
+interface Props {
+  searchParams: {
+    page?: string
+  }
+}
 
-export default function Shop() {
+export default async function Home({ searchParams }: Readonly<Props>) {
+  
+  const page = searchParams.page
+    ? parseInt(searchParams.page)
+    : 1;
+
+  const { products } = await getPaginatedProductWithImages({ page })
+
   return (
     <>
       <Title
