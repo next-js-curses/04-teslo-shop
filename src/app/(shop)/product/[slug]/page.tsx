@@ -1,10 +1,11 @@
 export const revalidate = 604800 // 7 días
 
 import { getProductBySlug } from '@/actions'
-import { ProductMobleSlideshow, ProductSlideshow, QuantitySelector, SizeSelector, StockLabel } from '@/components'
+import { ProductMobleSlideshow, ProductSlideshow, StockLabel } from '@/components'
 import { titleFont } from '@/config/fonts'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { AddToCart } from './ui/AddToCart'
 
 export async function generateMetadata(
   { params }: Props
@@ -65,19 +66,7 @@ export default async function Product({ params }: Readonly<Props>) {
         </h1>
         <p className="text-lg mb-5">${ product.price }</p>
 
-        {/* Selector de tallas */}
-        <SizeSelector
-          availableSizes={ product.sizes }
-          selectedSize={ product.sizes[0] }
-        />
-
-        {/* Selector de cantidad */}
-        <QuantitySelector quantity={ 0 } />
-
-        {/* Botón */}
-        <button className="btn-primary my-5">
-          Agregar al carrito
-        </button>
+        <AddToCart product={ product } />
 
         {/* Descripción */}
         <h3 className="font-bold text-sm">Descripción</h3>
