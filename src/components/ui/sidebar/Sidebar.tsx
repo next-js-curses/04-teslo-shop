@@ -1,5 +1,6 @@
 'use client'
 
+import { logout } from '@/actions'
 import { useUIStore } from '@/store'
 import clsx from 'clsx'
 import Link from 'next/link'
@@ -9,6 +10,11 @@ export const Sidebar = () => {
 
   const isSideMenuOpen = useUIStore(state => state.isSideMenuOpen)
   const closeSideMenu = useUIStore(state => state.closeSideMenu)
+
+  const onLogout = () => {
+    logout()
+    closeSideMenu()
+  }
 
   return (
     <div>
@@ -61,7 +67,8 @@ export const Sidebar = () => {
 
         {/* Menú */}
         <Link
-          href="/"
+          href="/profile"
+          onClick={() => closeSideMenu()}
           className="flex items-center mt-5 p-2 hover:bg-gray-100 rounded transition-all"
         >
           <IoPersonOutline size={ 30 } />
@@ -75,19 +82,20 @@ export const Sidebar = () => {
           <span className="ml-3 text-xl">Ordenes</span>
         </Link>
         <Link
-          href="/"
+          href="/auth/login"
           className="flex items-center mt-5 p-2 hover:bg-gray-100 rounded transition-all"
+          onClick={() => closeSideMenu()}
         >
           <IoLogInOutline size={ 30 } />
           <span className="ml-3 text-xl">Ingresar</span>
         </Link>
-        <Link
-          href="/"
-          className="flex items-center mt-5 p-2 hover:bg-gray-100 rounded transition-all"
+        <button
+          className="flex w-full items-center mt-5 p-2 hover:bg-gray-100 rounded transition-all"
+          onClick={() => onLogout()}
         >
           <IoLogOutOutline size={ 30 } />
           <span className="ml-3 text-xl">Salir</span>
-        </Link>
+        </button>
 
         {/* Line separator */}
         <div className="w-full h-px bg-gray-200 my-5" />
