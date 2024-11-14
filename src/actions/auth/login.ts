@@ -22,3 +22,24 @@ export async function authenticate(
     return 'UnknownError'
   }
 }
+
+export async function loginRegistedUser(email: string, password: string) {
+  try {
+
+    await signIn('credentials', { email, password, redirect: false });
+
+    return {
+      ok: true
+    }
+    
+  } catch (error) {
+    let msgError = 'UnknownError'
+    if ((error as any).type === 'CredentialsSignin') {
+      msgError = 'CredentialsSignin'
+    }
+    return {
+      ok: false,
+      message: msgError
+    }
+  }
+}
