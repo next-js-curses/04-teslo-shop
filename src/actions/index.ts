@@ -1,4 +1,5 @@
 export { authenticate, loginRegistedUser } from './auth/login'
+export { getCountries } from './country/get-country'
 export { getPaginatedProductWithImages } from './product/product-pagination'
 export { getProductBySlug } from './product/get-product-by-slug'
 export { getStockBySlug } from './product/get-stock-by-slug'
