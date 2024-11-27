@@ -11,7 +11,7 @@ export const getUserAddress = async (userId: string): Promise<Address|null> => {
 
     if (!storeAddress) return null
 
-    const { countryId, address2, ...rest } = storeAddress
+    const { countryId, address2, userId: _, ...rest } = storeAddress
 
     return {
       ...rest,

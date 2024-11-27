@@ -109,7 +109,7 @@ model Order {
   tax          Float
   total        Float
   itemsInOrder Int
-  isPaid       Boolean
+  isPaid       Boolean   @default(false)
   paidAt       DateTime?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
@@ -132,8 +132,8 @@ model OrderItem {
   order   Order  @relation(fields: [orderId], references: [id])
   orderId String
 
-  product   Product @relation(fields: [productid], references: [id])
-  productid String
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
 }
 
 model OrderAddress {
