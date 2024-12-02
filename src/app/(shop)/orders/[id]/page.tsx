@@ -1,5 +1,5 @@
 import { getOrderById } from '@/actions';
-import { Title } from "@/components";
+import { PayPalButton, Title } from "@/components";
 import { initialData } from "@/seed/seed";
 import { currencyFormat } from '@/utils';
 import clsx from "clsx";
@@ -114,22 +114,7 @@ export default async function OrderById({ params }: Readonly<Props>) {
             </div>
 
             <div className="mt-5 mb-2 w-full">
-              <div className={
-                clsx(
-                  "flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5",
-                  {
-                    'bg-red-500': !order!.isPaid,
-                    'bg-green-700': order!.isPaid
-                  }
-                )
-              }>
-                <IoCardOutline size={ 30 } />
-                <span className="mx-2">
-                  {
-                    order!.isPaid ? 'Pagada' : 'Pendiente de pago'
-                  }
-                </span>
-              </div>
+              <PayPalButton />
             </div>
           </div>
 
