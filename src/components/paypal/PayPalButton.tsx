@@ -15,7 +15,14 @@ export const PayPalButton = () => {
     )
   }
 
+  const createOrder = async(data: CreateOrderData, actions: CreateOrderActions): Promise<string> => {
+    return ''
+  }
+
   return (
-    <PayPalButtons />
+    <PayPalButtons
+      createOrder={}
+      onApprove={}
+    />
   )
 }
