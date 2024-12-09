@@ -13,12 +13,6 @@ interface Props {
   }
 }
 
-const productsInCart = [
-  initialData.products[0],
-  initialData.products[1],
-  initialData.products[2],
-]
-
 export default async function OrderById({ params }: Readonly<Props>) {
   const { id } = params
 
@@ -114,7 +108,7 @@ export default async function OrderById({ params }: Readonly<Props>) {
             </div>
 
             <div className="mt-5 mb-2 w-full">
-              <PayPalButton />
+              <PayPalButton orderId={ order!.id } amount={ order!.total } />
             </div>
           </div>
 

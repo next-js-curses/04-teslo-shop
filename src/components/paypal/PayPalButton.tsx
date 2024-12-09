@@ -1,8 +1,16 @@
 'use client'
 
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js'
+import type { CreateOrderData, CreateOrderActions } from '@paypal/paypal-js'
 
-export const PayPalButton = () => {
+interface Props {
+  orderId: string
+  amount: number
+}
+
+export const PayPalButton = ({ orderId, amount }: Props) => {
+
+  const rountedAmount = (Math.round(amount * 100)) / 100
 
   const [{ isPending }] = usePayPalScriptReducer()
 
@@ -16,13 +24,31 @@ export const PayPalButton = () => {
   }
 
   const createOrder = async(data: CreateOrderData, actions: CreateOrderActions): Promise<string> => {
-    return ''
+    const transactionId = await actions.order.create({
+      purchase_units: [
+        {
+          // invoice_id: 'order_id',
+          amount: {
+            value: `${ rountedAmount }`,
+            currency_code: 'USD'
+          }
+        }
+      ],
+      intent: 'CAPTURE'
+    })
+
+    if (!transactionId) {
+      throw new Error('No se pudo obtener transaction id de paypal')
+    }
+
+    console.log({ transactionId })
+    return transactionId
   }
 
   return (
     <PayPalButtons
-      createOrder={}
-      onApprove={}
+      createOrder={ createOrder }
+      // onApprove={}
     />
   )
 }
