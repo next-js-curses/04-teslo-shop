@@ -1,6 +1,7 @@
 export { authenticate, loginRegistedUser } from './auth/login'
 export { changeUserRole } from './user/change-user-role'
 export { deleteUserAddress } from './address/delete-user-address'
+export { getCategories } from './category/get-categories'
 export { getCountries } from './country/get-country'
 export { getOrderById } from './order/get-order-by-id'
 export { getOrderByUser } from './order/get-order-by-user'
