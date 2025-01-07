@@ -1,9 +1,9 @@
 'use server'
 
-import type { Gender } from '@/interfaces'
+import type { Category } from '@/interfaces'
 import prisma from '@/lib/prisma'
 
-export const getCategories = async(): Promise<Gender[]> => {
+export const getCategories = async(): Promise<Category[]> => {
   try {
     return await prisma.category.findMany({
       orderBy:{
